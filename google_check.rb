@@ -4,8 +4,12 @@ class Check
   def call
     # Make an authenticated API request
     puts "Listing gcs buckets as a test"
-    storage.buckets.each do |bucket|
-      puts bucket.name
+    if storage.buckets.empty?
+      puts "There are no GCS buckets in this project. But the Googgle SDK API successful."
+    else
+      storage.buckets.each do |bucket|
+        puts bucket.name
+      end
     end
     puts "Successfully connected to Google API with your GOOGLE_APPLICATION_CREDENTIALS"
   end
